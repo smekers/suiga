@@ -12,7 +12,6 @@ struct ContentView: View {
             if brightness > 0 {
                 lightColor
                     .ignoresSafeArea()
-                    .brightness(brightness)
                     .opacity(brightness)
             }
             VStack {
@@ -37,6 +36,7 @@ struct ContentView: View {
                     let change = -value.translation.height / 300.0
                     let newBrightness = min(max(startBrightness + change, 0.0), 1.0)
                     
+                    UIScreen.current?.brightness = CGFloat(newBrightness)
                     self.brightness = newBrightness
                 })
         )
